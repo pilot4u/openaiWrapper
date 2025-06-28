@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="openaiWrapper",
-    version="0.1.0",
+    name="openaiWrapperFunction",
+    version="0.1.1",
     packages=find_packages(),
     install_requires=["openai"],
     description="Decorator for creating OpenAI function tools",
@@ -13,7 +13,7 @@ setup(
     url="https://github.com/pilot4u/openaiWrapper",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Commons Clause",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.8',

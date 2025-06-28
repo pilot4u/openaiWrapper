@@ -140,27 +140,7 @@ class FunctionWrapper:
             base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
         
         # Prepare message content for user input
-        user_content = []
-        
-        # Process input arguments starting with "input_"
-        for key, value in input_kwargs.items():
-            if key.startswith("input_"):
-                # Extract content type from parameter name
-                content_type = key[6:]  # Remove "input_" prefix
-                
-                # Create content object based on type
-                if content_type == "text":
-                    user_content.append({"type": "text", "text": value})
-                elif content_type.endswith("_url"):
-                    # Determine media type from content_type
-                    media_type = content_type.replace("_url", "")
-                    user_content.append({
-                        "type": f"{media_type}_url",
-                        f"{media_type}_url": {"url": value}
-                    })
-                else:
-                    # Fallback to text representation
-                    user_content.append({"type": "text", "text": f"{content_type}: {value}"})
+        user_content = self.get_user_content_from_input(input_kwargs)
         
         # Add context as additional text input
         if context:
@@ -193,6 +173,33 @@ class FunctionWrapper:
         
         args_dict = json.loads(function_call.arguments)
         return self.func(**args_dict)
+
+    def get_user_content_from_input(self, input_kwargs):
+        user_content = []
+        
+        # Process input arguments starting with "input_"
+        for key, value in input_kwargs.items():
+            if key.startswith("input_"):
+                # Extract content type from parameter name
+                content_type = key[6:]  # Remove "input_" prefix
+                
+                # Create content object based on type
+                if content_type == "text":
+                    user_content.append({"type": "text", "text": value})
+                elif content_type.endswith("_url"):
+                    # Determine media type from content_type
+                    media_type = content_type.replace("_url", "")
+                    user_content.append({
+                        "type": f"{media_type}_url",
+                        f"{media_type}_url": {"url": value}
+                    })
+                elif content_type == "list":
+                    for list_item in value:
+                        user_content += self.get_user_content_from_input(list_item)
+                else:
+                    # Fallback to text representation
+                    user_content.append({"type": "text", "text": f"{content_type}: {value}"})
+        return user_content
 
 def openai_function(func=None, **config):
     """

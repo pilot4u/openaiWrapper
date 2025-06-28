@@ -8,8 +8,8 @@ setup(
     description="Decorator for creating OpenAI function tools",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    author="David",
-    author_email="david@example.com",
+    author="David Lerner",
+    author_email="mr.david.lerner@gmail.com",
     url="https://github.com/david/openai-wrapper",
     classifiers=[
         "Programming Language :: Python :: 3",

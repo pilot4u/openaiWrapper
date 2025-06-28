@@ -154,15 +154,15 @@ def local_ai_function(query: str) -> str:
 
 ### Install Locally
 ```bash
-git clone https://github.com/yourusername/openai-wrapper.git
-cd openai-wrapper
+git clone https://github.com/pilot4u/openaiWrapper.git
+cd openaiWrapper
 pip install -e .
 ```
 
 ### Run Tests
 ```bash
-python test.py
+python test/test.py
 ```
 
 ## License
-MIT License
+[MIT License](https://commonsclause.com/)

@@ -10,10 +10,10 @@ setup(
     long_description_content_type="text/markdown",
     author="David Lerner",
     author_email="mr.david.lerner@gmail.com",
-    url="https://github.com/david/openai-wrapper",
+    url="https://github.com/pilot4u/openaiWrapper",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: Commons Clause",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.8',
